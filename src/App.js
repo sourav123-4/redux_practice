@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+import { createStore } from 'redux';
 import './App.css';
 
 function App() {
+  const reducer=function(state,action){
+    if(action.type==="Attack"){
+      return action.payload
+    }else if(action.type==="No-Attack"){
+      return action.payload
+    }
+  }
+  const store=createStore(reducer,"PEACE")
+  store.subscribe(()=>{
+    console.log("store is now",store.getState())
+  })
+  store.dispatch({type:"Attack",payload:"Iron man"})
+  store.dispatch({type:"No-Attack",payload:"Peace"})
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      test      
     </div>
   );
 }
